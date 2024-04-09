@@ -96,10 +96,12 @@
             // 
             // timer1
             // 
+            timer1.Interval = 1;
             timer1.Tick += timer1_Tick;
             // 
             // timer2
             // 
+            timer2.Interval = 1;
             timer2.Tick += timer2_Tick;
             // 
             // Form1

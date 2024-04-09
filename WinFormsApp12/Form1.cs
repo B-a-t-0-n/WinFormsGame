@@ -18,6 +18,7 @@ namespace WinFormsApp12
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            int speed = 10;
             switch (e.KeyCode)
             {
                 case Keys.W:
@@ -29,20 +30,20 @@ namespace WinFormsApp12
                         
                     break;
                 case Keys.A:
-                    panelP.Location = panelP.Location.X - 5 <= 0 ? new Point(panelP.Location.X, panelP.Location.Y) : new Point(panelP.Location.X - 5, panelP.Location.Y);
+                    panelP.Location = panelP.Location.X - speed <= 0 ? new Point(panelP.Location.X, panelP.Location.Y) : new Point(panelP.Location.X - speed, panelP.Location.Y);
                     break;
                 case Keys.S:
                     panelP.Location = new Point(panelP.Location.X, panelP.Location.Y - panelP.Width);
                     break;
                 case Keys.D:
-                    panelP.Location = panelP.Location.X + 5 + panelP.Width + 5 >= this.Width ? new Point(panelP.Location.X, panelP.Location.Y) : new Point(panelP.Location.X + 5, panelP.Location.Y); ;
+                    panelP.Location = panelP.Location.X + speed + panelP.Width + speed >= this.Width ? new Point(panelP.Location.X, panelP.Location.Y) : new Point(panelP.Location.X + speed, panelP.Location.Y); ;
                     break;
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int speed = 10;
+            int speed = 5;
 
             if (panelP.Location.Y + speed <= panel2.Height - panelP.Height)
             {
@@ -57,7 +58,7 @@ namespace WinFormsApp12
         private void timer2_Tick(object sender, EventArgs e)
         {
 
-            int speed = 30;
+            int speed = 10;
 
             if (panelP.Location.Y - speed >= panel2.Height - panelP.Height - panelP.Height - panelP.Height)
             {
