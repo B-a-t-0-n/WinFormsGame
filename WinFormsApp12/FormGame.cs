@@ -5,6 +5,7 @@ namespace WinFormGame
         private bool _left, _right, _up, _down;
         private int speed = 10;
         private int speedGravity = 5;
+        private int jumpHeight = 10;
 
         public FormGame()
         {
@@ -54,9 +55,9 @@ namespace WinFormGame
 
         private void GravitationTimer_Tick(object sender, EventArgs e)
         {
-            if (player.Location.Y + speedGravity <= playerZone.Height - player.Height)
+            if (playerP.Location.Y + speedGravity <= playerZone.Height - playerP.Height && CheckMovement(playerP, 0, speedGravity))
             {
-                player.Location = new Point(player.Location.X, player.Location.Y + speedGravity);
+                playerP.Location = new Point(playerP.Location.X, playerP.Location.Y + speedGravity);
             }
             else
             {
@@ -66,27 +67,30 @@ namespace WinFormGame
 
         private void UpTimer_Tick(object sender, EventArgs e)
         {
-            if (player.Location.Y - speed >= playerZone.Height - player.Height * 3)
+            if (playerP.Location.Y - speed >= playerZone.Height - (playerZone.Height - playerP.Location.Y) - playerP.Height * jumpHeight)
             {
-                player.Location = new Point(player.Location.X, player.Location.Y - speed);
+                playerP.Location = new Point(playerP.Location.X, playerP.Location.Y - speed);
+                jumpHeight--;
             }
             else
             {
                 UpTimer.Enabled = false;
                 GravitationTimer.Enabled = true;
+                jumpHeight = 10;
+                
             }
         }
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
 
-            if(_left && player.Left > 0)
+            if(_left && playerP.Left > 0 && CheckMovement(playerP, speed * (-1), 0))
             {
-                player.Location = new Point(player.Location.X - speed, player.Location.Y);
+                playerP.Location = new Point(playerP.Location.X - speed, playerP.Location.Y);
             }
-            if (_right && player.Right <= playerZone.Width - player.Width / 6)
+            if (_right && playerP.Right <= playerZone.Width - playerP.Width / 6 && CheckMovement(playerP, speed, 0))
             {
-                player.Location = new Point(player.Location.X + speed, player.Location.Y);
+                playerP.Location = new Point(playerP.Location.X + speed, playerP.Location.Y);
             }
             if (_up)
             {
@@ -96,6 +100,32 @@ namespace WinFormGame
 
                 }
             }  
+        }
+
+        private bool CheckMovement(Control player ,int x, int y)
+        {
+            //копия персонажа для проверки на возможность передвижения
+            var testP = new Control();
+
+            playerZone.Controls.Add(testP);
+            testP.Visible = false;
+            testP.Location = player.Location;
+            testP.Size = player.Size;
+
+
+            testP.Location = new Point(testP.Location.X + x, testP.Location.Y + y);
+
+            foreach (Control item in playerZone.Controls)
+            {
+                if (item is Panel)
+                {
+                    if (testP.Bounds.IntersectsWith(item.Bounds))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
