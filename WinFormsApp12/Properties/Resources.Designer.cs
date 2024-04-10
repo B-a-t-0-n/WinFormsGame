@@ -69,5 +69,15 @@ namespace WinFormGame.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Снимок_экрана_2024_04_10_030551 {
+            get {
+                object obj = ResourceManager.GetObject("Снимок экрана 2024-04-10 030551", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

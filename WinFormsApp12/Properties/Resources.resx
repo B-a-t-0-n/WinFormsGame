@@ -121,4 +121,7 @@
   <data name="tumblr_owsbgsWF5R1r5u9m2o3_r1_500" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tumblr_owsbgsWF5R1r5u9m2o3_r1_500.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Снимок экрана 2024-04-10 030551" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Снимок экрана 2024-04-10 030551.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
