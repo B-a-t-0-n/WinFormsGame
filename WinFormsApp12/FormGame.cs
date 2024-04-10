@@ -3,6 +3,7 @@ namespace WinFormGame
     public partial class FormGame : Form
     {
         private bool _left, _right, _up, _down;
+        private bool isJumping;
         private int speed = 10;
         private int speedGravity = 5;
         private int jumpHeight = 10;
@@ -13,6 +14,7 @@ namespace WinFormGame
             KeyPreview = true;
             GravitationTimer.Enabled = true;
             MainTimer.Enabled = true;
+            isJumping = false;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -61,7 +63,7 @@ namespace WinFormGame
             }
             else
             {
-                GravitationTimer.Enabled = false;
+                isJumping = false;
             }
         }
 
@@ -94,10 +96,11 @@ namespace WinFormGame
             }
             if (_up)
             {
-                if (!GravitationTimer.Enabled)
+                if (!isJumping)
                 {
+                    GravitationTimer.Enabled = false;
                     UpTimer.Enabled = true;
-
+                    isJumping = true;
                 }
             }  
         }
