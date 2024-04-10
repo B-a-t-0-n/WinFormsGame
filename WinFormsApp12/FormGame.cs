@@ -84,7 +84,7 @@ namespace WinFormGame
             {
                 player.Location = new Point(player.Location.X - speed, player.Location.Y);
             }
-            if (_right && player.Right <= playerZone.Width)
+            if (_right && player.Right <= playerZone.Width - player.Width / 6)
             {
                 player.Location = new Point(player.Location.X + speed, player.Location.Y);
             }
