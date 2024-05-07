@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WinFormGame.Game
+namespace WinFormGame.Game.GameFormElement
 {
     public class Computer : Block
     {
